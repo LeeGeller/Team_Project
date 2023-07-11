@@ -16,12 +16,10 @@ public class SavingAccountTest {
         });
     }
 
-
     /*@ParameterizedTest
     @CsvFileSource(files = "src/test/resources/InitialBalanceTest")
     public void initialBalance(int init, int expected) {
         SavingAccount savingAccount = new SavingAccount(init, 5, 500, 1);
-
         int expected = savingAccount.getBalance();
 
         Assertions.assertEquals(expected, actual);
@@ -32,11 +30,10 @@ public class SavingAccountTest {
         SavingAccount savingAccount = new SavingAccount(5, 5, 1_000, 1);
 
         Assertions.assertEquals(savingAccount.getBalance(), 5);
-
     }
 
-    @Test
-    public void initialBalanceLessMinBalance() { //нужно дописать исключения при initialBalance<minBalance
+    @Test //нужно дописать исключения при initialBalance<minBalance
+    public void initialBalanceLessMinBalance() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new SavingAccount(10, 20, 500, -2);
         });
@@ -58,16 +55,15 @@ public class SavingAccountTest {
     }
 
 
-    @Test
-    public void minBalanceMoreMax() {  //тест не пройден !!!!!! дописать исключения при maxBalance<minBalance
+    @Test //тест не пройден !!!!!! дописать исключения при maxBalance<minBalance
+    public void minBalanceMoreMax() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new SavingAccount(10, 20, 19, 1);
         });
     }
 
     @Test
-    public void ExceptionInitialBalanceMoreMaxBalance() {
-        //тест не пройден !!!!!!нужно дописать исключения при initialBalance>maxBalance||initialBalance<minBalance
+    public void ExceptionInitialBalanceMoreMaxBalance() {  //тест не пройден !!!!!!нужно дописать исключения при initialBalance>maxBalance||initialBalance<minBalance
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new SavingAccount(1000, 20, 500, 1);
         });
@@ -110,10 +106,8 @@ public class SavingAccountTest {
 
         int actual = 500;
         int expected = savingAccount.getBalance();
-
         Assertions.assertEquals(expected, actual);
     }
-
 
 /*@ParameterizedTest
     //граничные значения и валидное значение;//тест не проходит ,нужно добавить ||balance-amount<minBalance на 47 после 0.
@@ -163,6 +157,19 @@ public class SavingAccountTest {
 
 
     /*@ParameterizedTest
+=======
+    }
+
+    @Test
+    public void ifPaySumMoreMinBalance() {
+        SavingAccount savingAccount = new SavingAccount(100, 5, 500, 1);
+        savingAccount.pay(96);
+
+        int actual = savingAccount.getBalance();
+        int expected = 4;
+
+        Assertions.assertEquals(expected, actual);
+    }
     //граничные значения и валидное значение //нужно добавить <= на 75 строке вместо = (метод add)//
     // ??возможно нужно ограничить % за остаток на счету maxbalance??//??считает коряво из за int, а не double??
     @CsvFileSource(files = "src/test/resources/YearChangeTestCase")
@@ -174,6 +181,7 @@ public class SavingAccountTest {
         int actual = savingAccount.yearChange();
 
         Assertions.assertEquals(expected, actual);
+<<<<<<< HEAD
     }*/
 
     @Test
@@ -203,8 +211,6 @@ public class SavingAccountTest {
         Assertions.assertEquals(15,savingAccount.getRate());
     }
 
-
-
     @Test
     public void getMinBalance() {
         SavingAccount savingAccount = new SavingAccount(10, 5, 500, 1);
@@ -224,4 +230,6 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(excepted, actual);
     }
+
 }
+
