@@ -288,7 +288,7 @@ class CreditAccountTest {
         );
 
         account.pay(4_000);
-        int excepted = account.getBalance() / 100 * account.getRate();
+        int excepted = -4_000 / 100 * 15;
 
         Assertions.assertEquals(excepted, account.yearChange());
     }
@@ -316,7 +316,7 @@ class CreditAccountTest {
         );
 
         account.pay(4_000);
-        int excepted = account.getBalance() / 100 * account.getRate();
+        int excepted = -4_000 / 100 * 1;
 
         Assertions.assertEquals(excepted, account.yearChange());
     }
@@ -330,7 +330,7 @@ class CreditAccountTest {
         );
 
         account.pay(4_000);
-        int excepted = account.getBalance() / 100 * account.getRate();
+        int excepted = -4_000 / 100 * 100;
 
         Assertions.assertEquals(excepted, account.yearChange());
     }
