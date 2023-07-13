@@ -108,22 +108,22 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void balanceAfterPay(){
+    public void balanceAfterPay() {
 
-        SavingAccount savingAccount = new SavingAccount(1_000,5,1_500,1);
+        SavingAccount savingAccount = new SavingAccount(1_000, 5, 1_500, 1);
 
         savingAccount.pay(500);
 
-        Assertions.assertEquals(500,savingAccount.getBalance());
+        Assertions.assertEquals(500, savingAccount.getBalance());
     }
 
     @Test
-    public void balanceAfterPayWithFalse(){
-        SavingAccount savingAccount = new SavingAccount(1_000,5,1_500,1);
+    public void balanceAfterPayWithFalse() {
+        SavingAccount savingAccount = new SavingAccount(1_000, 5, 1_500, 1);
 
         savingAccount.pay(999);
 
-        Assertions.assertEquals(1_000,savingAccount.getBalance());
+        Assertions.assertEquals(1_000, savingAccount.getBalance());
     }
 
 
@@ -145,12 +145,12 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void setRateIsPositive(){
+    public void setRateIsPositive() {
 
-        SavingAccount savingAccount = new SavingAccount(200,0,500,1);
+        SavingAccount savingAccount = new SavingAccount(200, 0, 500, 1);
         savingAccount.setRate(15);
 
-        Assertions.assertEquals(15,savingAccount.getRate());
+        Assertions.assertEquals(15, savingAccount.getRate());
     }
 
     @Test
@@ -171,6 +171,31 @@ public class SavingAccountTest {
         int excepted = 500;
 
         Assertions.assertEquals(excepted, actual);
+    }
+
+    @Test
+    public void buyWithAllYourMoney() {
+        SavingAccount savingAccount = new SavingAccount(55, 0, 500, 1);
+        savingAccount.pay(55);
+
+        Assertions.assertEquals(0, savingAccount.getBalance());
+    }
+
+    @Test
+    public void ifPayLessZero() {
+        SavingAccount savingAccount = new SavingAccount(55, 0, 500, 1);
+
+        Assertions.assertFalse(savingAccount.pay(-5));
+    }
+
+    @Test
+    public void ifYearChangIsZero() {
+        SavingAccount savingAccount = new SavingAccount(55, 0, 500, 5);
+
+        int expected = 55 / 100 * 5;
+
+        Assertions.assertEquals(expected,savingAccount.yearChange());
+
     }
 
 }
