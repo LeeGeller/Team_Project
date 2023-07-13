@@ -54,12 +54,9 @@ public class CreditAccount extends Account {
             return false;
         }
         balance = balance - amount;
-<<<<<<< HEAD
 
         if (balance >= -creditLimit) {
-=======
-        if (balance >= - creditLimit) { //если покупка до кредитного лимита
->>>>>>> 7c38a8edf89c6371bdfcca85abefac941d61ac42
+
             return true;
         }
 
