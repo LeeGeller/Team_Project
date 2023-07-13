@@ -23,7 +23,7 @@ public class SavingAccountTest {
         Assertions.assertEquals(savingAccount.getBalance(), 5);
     }
 
-    @Test //нужно дописать исключения при initialBalance<minBalance
+    @Test
     public void initialBalanceLessMinBalance() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new SavingAccount(10, 20, 500, -2);
@@ -172,7 +172,6 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(excepted, actual);
     }
-
     @Test
     public void buyWithAllYourMoney() {
         SavingAccount savingAccount = new SavingAccount(55, 0, 500, 1);
