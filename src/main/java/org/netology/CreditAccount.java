@@ -50,7 +50,7 @@ public class CreditAccount extends Account {
      */
     @Override
     public boolean pay(int amount) {
-        if (amount <= 0) {
+        if (amount <= 0) {  //если покупка меньше нуля
             return false;
         }
         balance = balance - amount;
