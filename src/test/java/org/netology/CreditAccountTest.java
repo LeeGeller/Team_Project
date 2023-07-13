@@ -34,57 +34,13 @@ class CreditAccountTest {
 
         account.add(4_000);
 
-
         Assertions.assertEquals(0, account.yearChange());
-    }
-
-    @Test
-    public void yearChangePositiveBalance123() {
-        CreditAccount account = new CreditAccount(0, 5_000, 15);
-
-        account.add(4_000);
-
-        Assertions.assertEquals(0, account.yearChange());
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(files = "src/test/resources/CreditAddTestCase")
-    public void addValues(int amount, int pay, int expected) {
-        CreditAccount account = new CreditAccount(1000, 1_000, 5);
-        account.add(amount);
-        account.pay(pay);
-
-        Assertions.assertEquals(expected, account.getBalance());
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(files = "src/test/resources/CreditYearChangeValues")
-    public void yearChangeValues(int amount, int pay, int rate, int expected) {
-        CreditAccount account = new CreditAccount(0, 1_000, rate);
-        account.add(amount);
-        account.pay(pay);
-
-
-        Assertions.assertEquals(expected, account.yearChange());
     }
 
     @Test
     public void addFalseValue() {
         CreditAccount account = new CreditAccount(0, 1_000, 0);
         Assertions.assertFalse(account.add(-5));
-    }
-
-    @Test
-    public void getCreditLimit() {
-        CreditAccount account = new CreditAccount(0, 1_000, 0);
-        Assertions.assertEquals(1000, account.getCreditLimit());
-    }
-
-    @Test
-    public void yearChangeIfBalanceMoreZero() {
-        CreditAccount account = new CreditAccount(500, 1_000, 15);
-
-        Assertions.assertEquals(0, account.yearChange());
     }
 
     @Test
@@ -136,7 +92,53 @@ class CreditAccountTest {
 
         Assertions.assertFalse(account.pay(-2));
 
+        account.add(4_000);
 
+
+        Assertions.assertEquals(0, account.yearChange());//Надо if, на случай, если баланс > 0
+    }
+
+    @Test
+    public void yearChangePositiveBalance123() {
+        CreditAccount account = new CreditAccount(0, 5_000, 15);
+
+        account.add(4_000);
+
+        Assertions.assertEquals(0, account.yearChange());//Надо if, на случай, если баланс > 0
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(files = "src/test/resources/CreditAddTestCase")
+    public void addValues(int amount, int pay, int expected) {
+        CreditAccount account = new CreditAccount(1000, 1_000, 5);
+        account.add(amount);
+        account.pay(pay);
+
+        Assertions.assertEquals(expected, account.getBalance());
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(files = "src/test/resources/CreditYearChangeValues")
+    public void yearChangeValues(int amount, int pay, int rate, int expected) {
+        CreditAccount account = new CreditAccount(0, 1_000, rate);
+        account.add(amount);
+        account.pay(pay);
+
+
+        Assertions.assertEquals(expected, account.yearChange());
+    }
+
+    @Test
+    public void getCreditLimit() {
+        CreditAccount account = new CreditAccount(0, 1_000, 0);
+        Assertions.assertEquals(1000, account.getCreditLimit());
+    }
+
+    @Test
+    public void yearChangeIfBalanceMoreZero() {
+        CreditAccount account = new CreditAccount(500, 1_000, 15);
+
+        Assertions.assertEquals(0, account.yearChange());
     }
 
     @Test
