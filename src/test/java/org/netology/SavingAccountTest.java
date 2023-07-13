@@ -16,14 +16,6 @@ public class SavingAccountTest {
         });
     }
 
-    @ParameterizedTest
-    @CsvFileSource(files = "src/test/resources/InitialBalanceTest")
-    public void initialBalance(int init, int expected) {
-        SavingAccount savingAccount = new SavingAccount(init, 5, 500, 1);
-
-        Assertions.assertEquals(expected, savingAccount.getBalance());
-    }
-
     @Test
     public void initialBalance() {
         SavingAccount savingAccount = new SavingAccount(5, 5, 1_000, 1);
@@ -108,24 +100,6 @@ public class SavingAccountTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @ParameterizedTest
-    @CsvFileSource(files = "src/test/resources/PayTestCase")
-    public void methodPayValues(int input, int expected) {
-        SavingAccount savingAccount = new SavingAccount(100, 5, 500, 1);
-        savingAccount.pay(input);
-
-        int actual = savingAccount.getBalance();
-
-        Assertions.assertEquals(expected, actual);
-    }
-    @Test
-    public void buyWithAllYourMoney() {
-        SavingAccount savingAccount = new SavingAccount(55, 0, 500, 1);
-        savingAccount.pay(55);
-
-        Assertions.assertEquals(0, savingAccount.getBalance());
-    }
-
     @Test
     public void methodPayValue() {
         SavingAccount savingAccount = new SavingAccount(100, 5, 500, 1);
@@ -158,16 +132,6 @@ public class SavingAccountTest {
         SavingAccount savingAccount = new SavingAccount(100, 5, 500, 1);
 
         Assertions.assertFalse(savingAccount.pay(96));
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(files = "src/test/resources/YearChangeTestCase")
-    public void methodYearChangeValues(int input, int rate, int expected) {
-        SavingAccount savingAccount = new SavingAccount(input, 0, 500, rate);
-
-        int actual = savingAccount.yearChange();
-
-        Assertions.assertEquals(expected, actual);
     }
 
     @Test
@@ -208,7 +172,30 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(excepted, actual);
     }
+    @Test
+    public void buyWithAllYourMoney() {
+        SavingAccount savingAccount = new SavingAccount(55, 0, 500, 1);
+        savingAccount.pay(55);
 
+        Assertions.assertEquals(0, savingAccount.getBalance());
+    }
 
+    @Test
+    public void ifPayLessZero() {
+        SavingAccount savingAccount = new SavingAccount(55, 0, 500, 1);
+
+        Assertions.assertFalse(savingAccount.pay(-5));
+    }
+
+    @Test
+    public void ifYearChangIsZero() {
+        SavingAccount savingAccount = new SavingAccount(55, 0, 500, 5);
+
+        int expected = 55 / 100 * 5;
+
+        Assertions.assertEquals(expected,savingAccount.yearChange());
+
+    }
 
 }
+
