@@ -241,6 +241,17 @@ class CreditAccountTest {
     }
 
     @Test
+    public void ChekBalanceAfterPayBorder(){
+        CreditAccount account = new CreditAccount(0,1_000,5);
+
+        account.pay(1_000);
+
+        Assertions.assertEquals(-1_000, account.getBalance());
+
+
+    }
+
+    @Test
     public void checkAddWithZero() {
         CreditAccount account = new CreditAccount(100, 1_000, 5);
 
