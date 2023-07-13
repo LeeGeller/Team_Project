@@ -3,7 +3,6 @@ on:
   branches: [credit]
  pull_request:
   branches: [credit]
-  
 jobs:
  build:
   runs-on: ubuntu-latest
